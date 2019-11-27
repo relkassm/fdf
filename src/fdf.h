@@ -6,7 +6,7 @@
 /*   By: relkassm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 11:38:35 by relkassm          #+#    #+#             */
-/*   Updated: 2019/11/25 15:46:08 by relkassm         ###   ########.fr       */
+/*   Updated: 2019/11/27 14:00:36 by relkassm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@ typedef struct		s_win
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
+	int		dx;
+	int		sx;
+	int		dy;
+	int		sy;
+	int		err;
+	int		e2;
 	int		x;
-	int		x1;
 	int		y;
+	int		x0;
+	int		y0;
+	int		x1;
 	int		y1;
 	int		winx;
 	int		winy;
@@ -34,19 +42,17 @@ typedef struct		s_win
 	int		**table;
 	int		pr;
 	int		z;
-	int		z0;
-	int		z1;
 	int		rx;
 	int		mx;
 	int		my;
 	int		hi;
-	int		lx;
 	int		wi;
-	char	*liner;
-	int		li;
-	int		lo;
 	int		jj;
-	int		zmo;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	char	*img_data;
+	int		lr;
 }					t_win;
 
 typedef struct		s_map
@@ -66,11 +72,13 @@ int					count_width(char *fstline);
 int					**store(char *buff);
 void				free_table(char **table);
 void				free_tablie(int **table, int y);
-void				drawmap(char *buff, int **table, t_win *w);
 void				print(char *buff);
-static void			iso(int *x, int *y, int z, t_win *w);
 static void			rotation(int *x, int *y, int *z, t_win *w);
+void				keypart(int key, t_win *w, int *a);
 int					keypress(int key, t_win *w);
-void				line(int x0, int y0, int x1, int y1,\
-		t_win *w, int cl, int **table, int wi);
+void				line(t_win *w, int cl);
+static void			putimagein(int x, int y, int color, t_win *w);
+void				iso(int *x, int *y, int z, t_win *w);
+void				drawmap(char *buff, int **t, t_win *w);
+void				drawlandd(int i, int j, t_win *w, int **t);
 #endif
