@@ -28,13 +28,13 @@ static void		putimagein(int x, int y, int color, t_win *w)
 
 void			iso(int *x, int *y, int z, t_win *w)
 {
-	int previous_x;
-	int previous_y;
+	int pre_x;
+	int pre_y;
 
-	previous_x = *x - w->x * w->jj;
-	previous_y = *y - w->y * w->jj;
-	*x = (previous_x - previous_y) * cos(0.52) + w->x * w->jj;
-	*y = -(z * w->z) + (previous_x + previous_y) * sin(0.52) + w->y * w->jj;
+	pre_x = *x - w->x * w->jj;
+	pre_y = *y - w->y * w->jj;
+	*x = (pre_x - pre_y) * cos(0.52) + w->x * w->jj;
+	*y = -(z * w->z * w->zm) + (pre_x + pre_y) * sin(0.52) + w->y * w->jj;
 }
 
 void			brescalc(t_win *w)

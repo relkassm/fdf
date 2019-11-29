@@ -31,17 +31,14 @@ all: $(NAME)
 
 $(NAME): $(SRCOBJ) $(LIBOBJ)
 	Make -C libft/
-	Make -C minilibx_macos/
 	Make -C src/
 
 clean:
 	Make -C libft/ clean
-	Make -C minilibx_macos/ clean
 	Make -C src/ clean
 
 fclean: clean
 	Make -C libft/ fclean
-	Make -C minilibx_macos/ clean
 	Make -C src/ fclean
 
 re: fclean all

@@ -55,6 +55,7 @@ typedef struct		s_win
 	int		lr;
 	int		v;
 	int		m;
+	int		cl;
 	int		xk;
 	int		yk;
 }					t_win;
@@ -67,6 +68,8 @@ typedef struct		s_map
 	int		j;
 	char	**lines;
 	char	**line;
+	int		bytes;
+	int		fd;
 }					t_map;
 
 int					count_height(char *buff);

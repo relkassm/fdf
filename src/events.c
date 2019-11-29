@@ -15,9 +15,9 @@
 int		mouse_press(int b, int x, int y, t_win *w)
 {
 	if (b == 4)
-		w->zm = w->zm + 4;
+		w->zm = w->zm + 1;
 	if (b == 5 && w->zm > 1)
-		w->zm = w->zm - 4;
+		w->zm = w->zm - 1;
 	if (b == 1)
 		w->m = !w->m;
 	w->xk = x - 322 - w->x;
@@ -47,6 +47,8 @@ void	keypart(int key, t_win *w, int *a)
 		w->pr = w->pr * -1;
 	else if (key == 12)
 		w->m = !w->m;
+	else if (key == 15)
+		init(w, w->buff);
 	else if (key == 7 && w->zm > 1)
 		w->zm = w->zm - 1;
 	else if (key == 124)
@@ -57,6 +59,12 @@ void	keypart(int key, t_win *w, int *a)
 		w->x = w->x - 10;
 	else if (key == 126)
 		w->y = w->y - 10;
+	else if (key == 53)
+	{
+		free(w->img_data);
+		free_tablie(w->table, w->hi);
+		exit(0);
+	}
 	else
 		*a = 1;
 }
@@ -74,8 +82,10 @@ int		keypress(int key, t_win *w)
 		w->z = w->z + 1;
 	else if (key == 1)
 		w->z = w->z - 1;
-	else if (key == 53)
-		exit(0);
+	else if (key == 8)
+		w->cl = w->cl + 1;
+	else if (key == 9)
+		w->cl = w->cl - 1;
 	else
 		keypart(key, w, &a);
 	if (a == 0)
@@ -89,28 +99,26 @@ int		keypress(int key, t_win *w)
 
 void	drawmenu(t_win *w)
 {
-	drawrect(w, 322, 800, 0x4d80e4);
-	drawrect(w, 322, 700, 0x5e8ce6);
-	drawrect(w, 322, 600, 0x7099e9);
-	drawrect(w, 322, 500, 0x82a6ec);
-	drawrect(w, 322, 400, 0x94b2ee);
-	drawrect(w, 322, 300, 0xa6bff1);
-	drawrect(w, 322, 200, 0xb7ccf4);
-	drawrect(w, 322, 100, 0x4573CD);
+	drawrect(w, 322, 800, 0x0E0E0E);
+	drawrect(w, 322, 100, 0x323232);
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
 			322 / 2 - 40, 40, 0xFFFFFF, "Fdf Menu");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 140, 0x4d80e4, "Arrow : Move The Map.");
+			18, 140, 0xECECEC, "Arrow  : Moving The Map.");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 240, 0x5e8ce6, "Z / X : Zoom In / Out.");
+			18, 190, 0xECECEC, "Mouse  : Moving The Map.");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 440, 0x4573CD, "A / S : In / Decrease Z Value.");
+			18, 240, 0xECECEC, "Z / X  : Zoom In/Out.");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 620, 0xa6bff1, "I     : Switch Between");
+			18, 290, 0xECECEC, "Scroll : Zoom In/Out.");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 640, 0xa6bff1, "        Projections.");
+			18, 340, 0xECECEC, "A / S  : In/Decrease Z Value.");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 720, 0xb7ccf4, "W     : Switch Between");
+			18, 390, 0xECECEC, "I      : Switch Projections");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,\
-			20, 740, 0xb7ccf4, "        Projections.");
+			18, 440, 0xECECEC, "W      : Switch Move Mode");
+	mlx_string_put(w->mlx_ptr, w->win_ptr,\
+			18, 490, 0xECECEC, "C / V  : Change Color.");
+	mlx_string_put(w->mlx_ptr, w->win_ptr,\
+			18, 540, 0xECECEC, "R      : Reset.");
 }

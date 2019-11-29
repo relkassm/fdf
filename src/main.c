@@ -15,19 +15,19 @@
 int		main(int ac, char **av)
 {
 	char	buff[BUFF_SIZE];
-	int		bytes;
-	int		fd;
+	t_map	f;
 
 	if (ac == 2)
 	{
-		fd = open(av[1], O_RDONLY);
-		bytes = read(fd, buff, BUFF_SIZE);
-		if (bytes == -1)
+		f.fd = open(av[1], O_RDONLY);
+		f.bytes = read(f.fd, buff, BUFF_SIZE);
+		if (f.bytes == -1)
 		{
-			ft_putendl("Found wrong line length. Exiting.");
+			ft_putstr("No file ");
+			ft_putendl(av[1]);
 			return (0);
 		}
-		buff[bytes] = '\0';
+		buff[f.bytes] = '\0';
 		if (check(buff) == 1)
 			mlx_start(buff);
 		else

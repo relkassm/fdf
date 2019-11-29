@@ -19,6 +19,13 @@ void		init(t_win *w, char *buff)
 	w->x = 0;
 	w->y = 0;
 	w->jj = 0;
+	w->winx = 1600;
+	w->winy = 800;
+	w->zm = (w->wi * 30 > 1600 ? 2 : 30);
+	w->pr = 1;
+	w->cl = 0;
+	w->m = 0;
+	w->z = 1;
 }
 
 void		mlx_start(char *buff)
@@ -26,12 +33,6 @@ void		mlx_start(char *buff)
 	t_win	w;
 
 	init(&w, buff);
-	w.winx = 1600;
-	w.winy = 800;
-	w.zm = 1;
-	w.pr = 1;
-	w.m = 0;
-	w.z = 1;
 	w.table = store(buff);
 	w.mlx_ptr = mlx_init();
 	w.buff = buff;
@@ -45,6 +46,8 @@ void		mlx_start(char *buff)
 	mlx_put_image_to_window(w.mlx_ptr, w.win_ptr, w.img_ptr, 322, 0);
 	drawmenu(&w);
 	mlx_loop(w.mlx_ptr);
+	free(w.img_data);
+	free_tablie(w.table, w.hi);
 }
 
 void		drawlandd(int i, int j, t_win *w, int **t)
@@ -62,7 +65,7 @@ void		drawlandd(int i, int j, t_win *w, int **t)
 		}
 		w->v = t[j][i] + t[j + !w->lr][i + w->lr];
 		line(w, t[j][i] == 0 && t[j + !w->lr][i + w->lr] == 0\
-				? 0xdff6f0 : 0 + w->z);
+		? 0xdff6f0 : (0 + w->cl) + !w->cl * 0xE51635);
 	}
 }
 
