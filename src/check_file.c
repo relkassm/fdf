@@ -77,3 +77,39 @@ int		check(char *buff)
 	free_table(xy.lines);
 	return (1);
 }
+
+int		check_empty(char *buff)
+{
+	int		i;
+
+	i = 0;
+	while(buff[i])
+	{
+		if (ft_isdigit(buff[i]) == 0)
+			i++;
+		else
+			return (1);
+	}
+	ft_putendl("No Data");
+	exit(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

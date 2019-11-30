@@ -28,7 +28,7 @@ int		main(int ac, char **av)
 			return (0);
 		}
 		buff[f.bytes] = '\0';
-		if (check(buff) == 1)
+		if (check_empty(buff) == 1 && check(buff) == 1)
 			mlx_start(buff);
 		else
 		{

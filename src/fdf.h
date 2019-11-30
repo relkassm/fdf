@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 # include <fcntl.h>
-# include <mlx.h>
+# include "../minilibx_macos/mlx.h"
 # include <math.h>
 # include "../libft/libft.h"
 # define BUFF_SIZE 6000000
@@ -76,6 +76,7 @@ int					count_height(char *buff);
 int					count_width(char *fstline);
 int					char_check(char x);
 int					check(char *buff);
+int 				check_empty(char *buff);
 
 int					**store(char *buff);
 void				free_table(char **table);
