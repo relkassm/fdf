@@ -15,18 +15,18 @@ NAME = ../fdf
 FLAG = -Werror -Wextra -Wall
 
 SRC = main.c check_file.c store.c fdf.c line.c events.c
-
-
+INC  = fdf.h
 OBJ = main.o check_file.o store.o fdf.o line.o events.o
 
+BIN = ../libft/libft.a
 
-BIN = ../libft/libft.a ../minilibx_macos/libmlx.a
+MLX_PATH = /usr/local/
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(INC)
 	gcc $(FLAGS) -c $(SRC)
-	gcc $(FLAGS) $(OBJ) $(BIN) -framework OpenGL -framework AppKit -o $(NAME)
+	gcc $(FLAGS) $(OBJ) $(BIN) -lmlx  -L  $(MLX_PATH)lib/ -I $(MLX_PATH)include -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	rm -f $(OBJ)

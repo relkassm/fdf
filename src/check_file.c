@@ -49,21 +49,18 @@ int		char_check(char x)
 	return (1);
 }
 
-int		check(char *buff)
+int		check(char *buff, t_map xy)
 {
-	t_map	xy;
-
-	xy.i = 0;
-	while (buff[xy.i])
+	xy.i = -1;
+	while (buff[++xy.i])
 	{
 		if (char_check(buff[xy.i] == 0))
 			return (0);
-		xy.i++;
 	}
 	xy.x = count_width(buff);
 	xy.lines = ft_strsplit(buff, '\n');
-	xy.i = 0;
-	while (xy.lines[xy.i])
+	xy.i = -1;
+	while (xy.lines[++xy.i])
 	{
 		xy.line = ft_strsplit(xy.lines[xy.i], ' ');
 		xy.j = 0;
@@ -71,8 +68,10 @@ int		check(char *buff)
 			xy.j++;
 		free_table(xy.line);
 		if ((xy.j) < xy.x)
+		{
+			free_table(xy.lines);
 			return (0);
-		xy.i++;
+		}
 	}
 	free_table(xy.lines);
 	return (1);
@@ -81,35 +80,27 @@ int		check(char *buff)
 int		check_empty(char *buff)
 {
 	int		i;
+	int		j;
+	int		z;
 
+	j = 0;
 	i = 0;
-	while(buff[i])
+	while (buff[i])
 	{
-		if (ft_isdigit(buff[i]) == 0)
-			i++;
-		else
-			return (1);
+		if (buff[i] == '\n')
+			j++;
+		i++;
 	}
+	i = 0;
+	while (buff[i] && buff[i] != '\n')
+	{
+		if (buff[i] > 32 && buff[i] < 127)
+			break ;
+		else
+			i++;
+	}
+	if (buff[i] > 32 && buff[i] < 127)
+		return (j > count_height(buff) ? 0 : 1);
 	ft_putendl("No Data");
 	exit(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -61,8 +61,9 @@ void	keypart(int key, t_win *w, int *a)
 		w->y = w->y - 10;
 	else if (key == 53)
 	{
-		free(w->img_data);
 		free_tablie(w->table, w->hi);
+		mlx_destroy_image(w->mlx_ptr, w->img_ptr);
+		mlx_destroy_window(w->mlx_ptr, w->win_ptr);
 		exit(0);
 	}
 	else

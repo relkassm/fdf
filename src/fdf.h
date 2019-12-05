@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 # include <fcntl.h>
-# include "../minilibx_macos/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include "../libft/libft.h"
 # define BUFF_SIZE 6000000
@@ -58,6 +58,7 @@ typedef struct		s_win
 	int		cl;
 	int		xk;
 	int		yk;
+	int		d;
 }					t_win;
 
 typedef struct		s_map
@@ -75,8 +76,8 @@ typedef struct		s_map
 int					count_height(char *buff);
 int					count_width(char *fstline);
 int					char_check(char x);
-int					check(char *buff);
-int 				check_empty(char *buff);
+int					check(char *buff, t_map f);
+int					check_empty(char *buff);
 
 int					**store(char *buff);
 void				free_table(char **table);

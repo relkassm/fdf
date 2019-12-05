@@ -46,7 +46,8 @@ void		mlx_start(char *buff)
 	mlx_put_image_to_window(w.mlx_ptr, w.win_ptr, w.img_ptr, 322, 0);
 	drawmenu(&w);
 	mlx_loop(w.mlx_ptr);
-	free(w.img_data);
+	mlx_destroy_image(w.mlx_ptr, w.img_ptr);
+	mlx_destroy_window(w.mlx_ptr, w.win_ptr);
 	free_tablie(w.table, w.hi);
 }
 

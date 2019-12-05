@@ -51,7 +51,6 @@ void	free_table(char **table)
 		free(table[i]);
 		i++;
 	}
-	free(table[i]);
 	free(table);
 }
 

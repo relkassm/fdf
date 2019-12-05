@@ -14,6 +14,8 @@ NAME = fdf
 
 SRCOBJ = src/main.o	src/check_file.o src/store.o src/fdf.o src/line.o src/events.o
 
+INC  = src/fdf.h libft/libft.h
+
 LIBOBJ = 	libft/ft_atoi.o       libft/ft_lstnew.o     libft/ft_putendl_fd.o libft/ft_strequ.o     libft/ft_strnew.o	\
 			libft/ft_bzero.o      libft/ft_memalloc.o   libft/ft_putnbr.o     libft/ft_striter.o    libft/ft_strnstr.o	\
 			libft/ft_isalnum.o    libft/ft_memccpy.o    libft/ft_putnbr_fd.o  libft/ft_striteri.o   libft/ft_strrchr.o	\
@@ -29,19 +31,16 @@ LIBOBJ = 	libft/ft_atoi.o       libft/ft_lstnew.o     libft/ft_putendl_fd.o libf
 
 all: $(NAME)
 
-$(NAME): $(SRCOBJ) $(LIBOBJ)
+$(NAME): $(SRCOBJ) $(LIBOBJ) $(INC)
 	Make -C libft/
-	Make -C minilibx_macos/
 	Make -C src/
 
 clean:
 	Make -C libft/ clean
-	Make -C minilibx_macos/ clean
 	Make -C src/ clean
 
 fclean: clean
 	Make -C libft/ fclean
-	Make -C minilibx_macos/ clean
 	Make -C src/ fclean
 
 re: fclean all
